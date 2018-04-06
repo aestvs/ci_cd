@@ -1,0 +1,16 @@
+docker run -it --name teamcity-server-instance `
+    -v A:\GitHub\TeamCity\Data:C:/ProgramData/JetBrains/TeamCity `
+    -v A:\GitHub\TeamCity\Logs:C:/TeamCity/logs `
+    -p 8111:8111 `
+    jetbrains/teamcity-server:latest-nanoserver
+
+docker run -it -e SERVER_URL="localhost:8111" ` 
+    -v A:\GitHub\TeamCity\TeamCityAgent1:C:/BuildAgent/conf `     
+    jetbrains/teamcity-minimal-agent:latest-nanoserver
+
+docker run --name OctopusDeploy ^
+           --publish 81:81 ^
+           --env sqlDbConnectionString="..." ^
+           --volume A:\GitHub\Octopus-Data:c:/Octopus ^
+           --tty --interactive ^
+           octopusdeploy/octopusdeploy
