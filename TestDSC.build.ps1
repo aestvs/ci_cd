@@ -1,6 +1,6 @@
 task InstallDependencies {
- #   Install-Module Pester -SkipPublisherCheck -Force
-   Install-Module PSScriptAnalyzer -Force -confirm:$false
+   Install-Module Pester -SkipPublisherCheck -Recurse -Force
+   Install-Module PSScriptAnalyzer -Recurse -Force 
 }
 
 task Analyze {
