@@ -31,13 +31,13 @@ task Test {
     }
 
     # Publish Test Results as NUnitXml
-    $testResults = Invoke-Pester @invokePesterParams;
+    $testResults = Invoke-Pester @invokePesterParams -OutputFormat  NUnitXml;
 
     $numberFails = $testResults.FailedCount
     assert($numberFails -eq 0) ('Failed "{0}" unit tests.' -f $numberFails)
 }
 
-#missing verion update
+#missing verion update section
 
 task Clean {
     $Artifacts = "$BuildRoot\Artifacts"
